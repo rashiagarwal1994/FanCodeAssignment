@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="FanCode API Automation Suite" verbose="1" parallel="false">
+
+    <listeners>
+        <!-- Optional: You can create a custom listener to integrate reporting hooks -->
+    </listeners>
+
+    <test name="Verify FanCode Users' ToDo Completion">
+        <classes>
+            <class name="com.fancode.tests.UserTaskTest"/>
+        </classes>
+    </test>
+
+</suite>
+
+<!--<suite name="FanCodeUserTodoSuite">-->
+<!--<test name="VerifyTodoCompletion">-->
+<!--    <classes>-->
+<!--        <class name="com.fancode.tests.UserTaskTest"/>-->
+<!--    </classes>-->
+<!--</test>-->
+<!--</suite>-->

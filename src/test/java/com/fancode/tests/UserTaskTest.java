@@ -12,6 +12,8 @@ import org.testng.annotations.*;
 
 import java.util.List;
 
+import static com.fancode.service.CityService.isFanCodeCity;
+
 public class UserTaskTest {
 
     private UserService userService;
@@ -31,24 +33,24 @@ public class UserTaskTest {
     @Test
     public void verifyFanCodeUsersTodoCompletion() {
         test = ReportManager.createTest("Verify FanCode Users Todo Completion");
-        try {
-            List<User> users = userService.getUsers();
-            users.stream()
-                    .filter(CityService::isFanCodeCity)
-                    .forEach(user -> {
-                        List<Task> tasks = userService.getTasksForUser(user.getId());
-                        double completionPercentage = userService.calculateCompletionPercentage(tasks);
-                        if (completionPercentage > 50) {
-                            test.pass("User " + user.getName() + " has " + completionPercentage + "% tasks completed.");
-                        } else {
-                            test.fail("User " + user.getName() + " has only " + completionPercentage + "% tasks completed.");
-                            Assert.fail("User " + user.getName() + " has less than 50% completed tasks.");
-                        }
-                    });
-        } catch (Exception e) {
-            test.fail("Test execution error: " + e.getMessage());
-            throw e;
+        boolean flag = false;
+        List<User> users = userService.getUsers();
+        for (User user : users) {
+            if (CityService.isFanCodeCity(user)){
+                List<Task> tasks = userService.getTasksForUser(user.getId());
+                double completionPercentage = userService.calculateCompletionPercentage(tasks);
+                if (completionPercentage > 50) {
+                    test.pass("User " + user.getName() + " has " + completionPercentage + "% tasks completed.");
+                } else {
+                    test.fail("User " + user.getName() + " has only " + completionPercentage + "% tasks completed.");
+                    flag = true;
+                }
+            }
         }
+        if (flag) {
+            Assert.fail();
+        }
+
     }
 
     @AfterClass

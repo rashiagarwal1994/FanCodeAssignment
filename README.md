@@ -4,7 +4,7 @@
 Ensure all users in the FanCode city (lat between -40 and 5, long between 5 and 100) have completed more than 50% of their tasks.
 
 ## Tech Stack
-- Java 17
+- Java 21
 - Maven
 - RestAssured
 - TestNG
@@ -24,5 +24,5 @@ Ensure all users in the FanCode city (lat between -40 and 5, long between 5 and 
    
    and run the test case "verifyFanCodeUsersTodoCompletion"
 
-4.  A report folder will be created in parallel to src/ folder. 
+4. A report file will be created in parallel to ./target/ExtentReport.html. 
 5. Open the report in a browser to view the test results.

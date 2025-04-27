@@ -11,7 +11,6 @@ public class ReportManager {
 
     public static ExtentReports getInstance() {
         if (extent == null) {
-            //String reportPath = "./reports/FanCodeAutomationReport.html";
             String reportPath= "./target/ExtentReport.html";
             ExtentSparkReporter htmlReporter = new ExtentSparkReporter(reportPath);
             htmlReporter.config().setDocumentTitle("FanCode API Automation");
